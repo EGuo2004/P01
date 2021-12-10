@@ -17,3 +17,6 @@ Revised design document by adding Python and APIs to the component map.
 
 yoonahC -- 2021-12-10 08:57
 Added heading to devlog
+
+yoonahC -- 2021-12-10 09:02
+Edited requirements.txt
