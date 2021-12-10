@@ -1,5 +1,5 @@
 # The Breakbuddy(TM) by Softlocked Ducks
-Eric Guo - Front-end (Bootstrap, HTML)
+PM Eric Guo - Front-end (Bootstrap, HTML)
 <br>
 Michael Borczuk = Back-end (Flask, API linking)
 <br>
