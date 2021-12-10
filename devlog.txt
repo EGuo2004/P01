@@ -1,8 +1,19 @@
+Softlocked Ducks: Eric Guo, Michael Borczuk, Yoonah Chang, Josephine Lee
+SoftDev
+P01 -- Break Portal Devlog
+2021-12-23
+
 ericG, michaelB, josephineL, yoonahC -- 2021-12-08 19:34
 Created design document, made site map and component map.
+
+yoonahC -- 2021-12-09 22:01
+Added heading to devlog and added API routing to component map.
 
 ericG -- 2021-12-09 11:06
 Added HTML templates to design doc.
 
 josephineL -- 2021-12-09 23:07
-Revised design document by adding Python and APIs to the component map. HTML templates are also now listed.
+Revised design document by adding Python and APIs to the component map.
+
+yoonahC -- 2021-12-10 08:57
+Added heading to devlog
