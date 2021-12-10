@@ -1,0 +1,2 @@
+josephineL -- 2021-12-09 23:07
+Revised design document by adding Python and APIs to the component map. HTML templates are also now listed.
