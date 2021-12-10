@@ -7,5 +7,40 @@ Yoonah Chang - Front-end (Bootstrap, HTML)
 ## Description
   The Breakbuddy(TM) is designed to be used whenever someone is doing work. To prevent overworking or working continiously without a break, The Breakbuddy(TM) will alert the user after a certain amount of time working that they should take a break. After the user accepts the much needed break, The Breakbuddy(TM) will begin to play some music from the users Spotify playlist or a popular playlist depending on the user's choice. Additionally, NASA images will be shown with jokes and/or fun facts on top of them to provide some slight entertainment for the user as well.
   
-  ## Launch Codes
-  TBD
+## Launch Codes
+### Clone Repository
+
+Clone this repository to your computer with https link:
+```shell 
+$ git clone git@github.com:EGuo2004/P01.git
+```
+
+### Set up a Virtual Environment
+
+1. Create a virtual environment
+  ```shell
+  $ python3 -m venv <path_to_virtual_environment>
+  ```
+
+2. Activate the virtual environment
+  ```shell
+  $ . <path_to_virtual_environment>/bin/activate
+  ```
+
+### Install Libraries Contained in ``` requirements.txt```
+
+```shell
+(<venv_name>)$ cd <path_to_redacted>
+(<venv_name>)$ pip3 install -r requirements.txt 
+```
+
+### Run Program
+
+```shell
+(<venv_name>)$ cd <path_to_redacted>/app
+(<venv_name>)$ python3 __init__.py
+```
+
+### Launch Site
+
+Go to http://127.0.0.1:5000/ in your browser.
