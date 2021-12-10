@@ -1,0 +1,11 @@
+https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_JokeAPI
+
+https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_kanye.rest.md
+
+https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Color.md
+
+https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_FunFacts.md
+
+https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Spotify.md
+
+https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_HarvardArtMuseums.md
