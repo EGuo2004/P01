@@ -21,5 +21,8 @@ Added heading to devlog
 yoonahC -- 2021-12-10 09:02
 Edited requirements.txt
 
-josephineL -- 2021-12-10 09:22
-Updated roles in read.me; changed NASA API to Harvard Art Museums. Collected API links.
+michaelB -- 2021-12-10 09:11
+Add launch codes to the readme file.
+
+michaelB -- 2021-12-12 16:22
+Add initial code for login, create, and break pages (copied from P0).
