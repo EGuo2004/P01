@@ -24,5 +24,8 @@ Edited requirements.txt
 michaelB -- 2021-12-10 09:11
 Add launch codes to the readme file.
 
+josephineL -- 2021-12-10 09:22
+Updated roles in read.me; changed NASA API to Harvard Art Museums in design doc. Collected API links and keys.
+
 michaelB -- 2021-12-12 16:22
 Add initial code for login, create, and break pages (copied from P0).
