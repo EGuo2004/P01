@@ -29,3 +29,7 @@ Updated roles in read.me; changed NASA API to Harvard Art Museums in design doc.
 
 michaelB -- 2021-12-12 16:22
 Add initial code for login, create, and break pages (copied from P0).
+
+ericG, michaelB, josephineL, yoonahC -- 2021-12-13 09:26
+Set up the base style for the entire site, must flush out bootstrap
+Troubleshooting login, mostly done, some bugs still
