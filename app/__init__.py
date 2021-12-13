@@ -3,7 +3,7 @@ from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
 from flask import session           #allow for session creation/maintenance
 from flask import redirect
-from urllib import request
+# from urllib import request -- breaks for some reason
 import json
 from os import urandom
 import db
