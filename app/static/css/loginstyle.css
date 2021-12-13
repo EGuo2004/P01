@@ -1,0 +1,15 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+   background-color: lightgray;
+}
+
+h1 {
+   color: var(--bs-purple);
+   text-align: center;
+}
+
+#formed {
+   color: var(--bs-purple);
+   text-align: center;
+}
