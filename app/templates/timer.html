@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title> Go study n stop procrastinating </title>
+  </head>
+
+  <body>
+    <h1>
+      Currently studying...
+    </h1>
+    <h3>How long do you want to study for?</h3>
+    <input type="text" name="studytime">
+    <br>
+
+  </body>
+
+</html>
+
+
+python stuff
+import time
+def countdown(t):
+
+    while t:
+        mins, secs = divmod(t, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        t -= 1
+    print('Take a break!')
+
+t = input("Enter your study time in seconds: ")
+
+countdown(int(t))
