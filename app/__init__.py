@@ -6,6 +6,8 @@ from flask import redirect
 # from urllib import request -- breaks for some reason
 import json
 from os import urandom
+from jokeapi import Jokes
+import asyncio
 import db
 import sqlite3   #enable control of an sqlite database
 
@@ -28,7 +30,16 @@ To see how everything works (Yuqing just tested for one user so)
 
     You should be redirected to home page, click add to story again, you shouldn't see anything since you can't
     add to a story twice
+async def print_joke():
+    j = await Jokes()  # Initialise the class
+    await j.get_joke()  # Retrieve a random joke
+    if joke["type"] == "single": # Print the joke
+        print(joke["joke"])
+    else:
+        print(joke["setup"])
+        print(joke["delivery"])
 
+asyncio.run(print_joke())
 Somebody test out multi users.
 """
 @app.route("/", methods=['GET', 'POST'])
@@ -83,7 +94,15 @@ def disp_loginpage():
 
 @app.route("/home", methods=['GET', 'POST'])
 def load_home():
-    return render_template('break.html', name = session["login"]) # render login page with an error message
+    #j = await Jokes()  # Initialise the class
+    #await j.get_joke()  # Retrieve a random joke
+    #if joke["type"] == "single": # Print the joke
+    #    joke01 = (joke["joke"])
+    #else:
+    #    joke01 = print(joke["setup"])
+    #    joke02 = print(joke["delivery"])
+
+    return render_template('break.html', name = session["login"], joke1 = joke01, joke2 = joke02) # render login page with an error message
 
 
 @app.route("/create_account", methods=['GET', 'POST'])
