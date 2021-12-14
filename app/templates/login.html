@@ -17,18 +17,15 @@
           Login Here!
         </h3>
         <form action="/" method="POST">
-          <label>Username:</label>
-          <input type="text" name="username">
-          <br><br>
-          <label>Password:</label>
-          <input type="password" name="password">
+          <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="inputGroup-sizing-sm">
+          <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="inputGroup-sizing-sm">
           <br>
       		<p style="color:red;">{{error_message}}</p>
-      		<input type="submit" name="sub1" value="Login">
+      		<input class="btn btn-success" type="submit" name="sub1" value="Login">
     		</form>
     		<br>
     		<form action="/create_account" method="POST">
-      			<input type="submit" name="create" value="Create An Account">
+      			<input class="btn btn-success" type="submit" name="create" value="Create An Account">
     		</form>
     </div>
   </body>
