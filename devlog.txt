@@ -36,3 +36,6 @@ Troubleshooting login, mostly done, some bugs still
 
 josephineL -- 2021-12-14 09:20
 Started to set up joke API, installed joke API python wrapper
+
+yoonahC -- 2021-12-14 09:22
+Worked on timer.html backend and frontend portion.
