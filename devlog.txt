@@ -42,3 +42,6 @@ Worked on timer.html backend and frontend portion.
 
 michaelB -- 2021-12-15 08:46
 Fix bug with urllib.request; start authentication with Spotify.
+
+yoonahC -- 2021-12-15 15:48
+Fixed bug in login.html and register.html to display form boxes in center of screen.
