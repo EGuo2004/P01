@@ -17,12 +17,14 @@
         <input type="password" name="password" class="form-control" style="width:200px" placeholder="Password" aria-label="Password" aria-describedby="inputGroup-sizing-sm">
         <input type="password" name="cpassword" class="form-control" style="width:200px" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="inputGroup-sizing-sm">
         <br>
-        <p style="color:red;">{{error_message}}</p>
+		<div class="alert alert-danger" role="alert">
+			{{error_message}}
+		</div>
         <input class="btn btn-success" type="submit" name="sub1" value="Create My Account!">
       </form>
       <br>
       <form action="/" method="POST">
-	  <input class="btn btn-success" type="submit" name="sub1" value="Back to Login Page">
+	  		<input class="btn btn-success" type="submit" name="sub1" value="Back to Login Page">
       </form>
     </div>
   </body>
