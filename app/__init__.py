@@ -3,10 +3,10 @@ from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
 from flask import session           #allow for session creation/maintenance
 from flask import redirect
-# from urllib import request -- breaks for some reason
+import urllib
 import json
 from os import urandom
-from jokeapi import Jokes
+# from jokeapi import Jokes
 import asyncio
 import db
 import sqlite3   #enable control of an sqlite database
@@ -101,8 +101,28 @@ def load_home():
     #else:
     #    joke01 = print(joke["setup"])
     #    joke02 = print(joke["delivery"])
+    key = "537460653fc3495991100368458ce398"
+    keys = {
+        'grant_type': 'client_credentials',
+        'client_id': "537460653fc3495991100368458ce398",
+        'client_secret': "cb27fce0a98e4d7d9aaccc5d930ba1a8",
+    }
+    data = urllib.parse.urlencode(keys)
+    data = data.encode("ascii")
+    response = urllib.request.urlopen("https://accounts.spotify.com/api/token",data=data) # join key with base url
+    print(response)
+    json_stuff = json.loads(response.read())  
+    print(json_stuff)
+    # base URL of all Spotify API endpoints
+    BASE_URL = 'https://api.spotify.com/v1/'
 
-    return render_template('break.html', name = session["login"], joke1 = joke01, joke2 = joke02) # render login page with an error message
+    # Track ID from the URI
+    track_id = '6y0igZArWVi6Iz0rj35c1Y'
+
+    # actual GET request with proper header
+    r = urllib.request.urlopen(BASE_URL + 'audio-features/' + track_id, data=data)
+    print(json.loads(response.read()))
+    return render_template('break.html', name = session["login"], joke1 = "joke01", joke2 = "joke02") # render login page with an error message
 
 
 @app.route("/create_account", methods=['GET', 'POST'])
