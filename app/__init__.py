@@ -102,9 +102,11 @@ def load_home():
 
     response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
     json_stuff = json.loads(response.read())
+    data = json_stuff["data"]
+    funFact = data["fact"]
 
 
-    return render_template('home.html', name = session["login"], fact = json_stuff["data"]) # render login page with an error message
+    return render_template('home.html', name = session["login"], fact = funFact) # render login page with an error message
 
 
 @app.route("/create_account", methods=['GET', 'POST'])
