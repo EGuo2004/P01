@@ -55,3 +55,6 @@ Fixed bug in login.html and register.html to display form boxes in center of scr
 
 michaelB -- 2021-12-16 09:04
 Set up authentication with the Spotify API, and successfully obtain a response.
+
+josephineL -- 2021-12-16 09:19
+Started linking fun facts API.
