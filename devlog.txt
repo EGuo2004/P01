@@ -52,3 +52,6 @@ Fix bug with urllib.request; start authentication with Spotify.
 
 yoonahC -- 2021-12-15 15:48
 Fixed bug in login.html and register.html to display form boxes in center of screen.
+
+michaelB -- 2021-12-16 09:04
+Set up authentication with the Spotify API, and successfully obtain a response.
