@@ -17,20 +17,22 @@
           Login Here!
         </h3>
 	    <center>
+	{% if error_message %}
+	<div class="alert alert-danger" style="width:500px" role="alert">
+		{{error_message}}
+	</div>
+	{% endif %}
         <form action="/" method="POST">
           <input type="text" name="username" class="form-control" style="width:200px" placeholder="Username" aria-label="Username" aria-describedby="inputGroup-sizing-sm">
           <input type="password" name="password" class="form-control" style="width:200px" placeholder="Password" aria-label="Password" aria-describedby="inputGroup-sizing-sm">
           <br>
-          <div class="alert alert-danger" role="alert">
-  		{{error_message}}
-	  </div>
       	  <input class="btn btn-success" type="submit" name="sub1" value="Login">
     	</form>
 	<br>
 	<form action="/create_account" method="POST">
 		<input class="btn btn-success" type="submit" name="create" value="Create An Account">
 	</form>
-	    </center>
+	</center>
     </div>
   </body>
 
