@@ -83,7 +83,7 @@ def load_home():
     data = data.encode("ascii")
     response = urllib.request.urlopen("https://accounts.spotify.com/api/token",data=data) # join key with base url
     print(response)
-    json_stuff = json.loads(response.read())  
+    json_stuff = json.loads(response.read())
     print(json_stuff)
     # headers = {
     #     'Authorization': 'Bearer {token}'.format(token=json_stuff["access_token"])
@@ -99,7 +99,12 @@ def load_home():
     req.add_header('Authorization', 'Bearer {token}'.format(token=json_stuff["access_token"]))
     response = urllib.request.urlopen(req)
     print(json.loads(response.read()))
-    return render_template('home.html', name = session["login"]) # render login page with an error message
+
+    response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
+    json_stuff = json.loads(response.read())
+
+
+    return render_template('home.html', name = session["login"], fact = json_stuff["data"]) # render login page with an error message
 
 
 @app.route("/create_account", methods=['GET', 'POST'])
