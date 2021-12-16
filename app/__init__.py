@@ -122,7 +122,7 @@ def load_home():
     # actual GET request with proper header
     r = urllib.request.urlopen(BASE_URL + 'audio-features/' + track_id, data=data)
     print(json.loads(response.read()))
-    return render_template('break.html', name = session["login"], joke1 = "joke01", joke2 = "joke02") # render login page with an error message
+    return render_template('home.html', name = session["login"]) # render login page with an error message
 
 
 @app.route("/create_account", methods=['GET', 'POST'])
