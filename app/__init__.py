@@ -14,34 +14,6 @@ import sqlite3   #enable control of an sqlite database
 app = Flask(__name__)    #create Flask object
 app.secret_key = urandom(32) #generates random key
 
-"""
-This file is used as a first draft of our code. We transfer good and working code to __init__ from here.
-
-To see how everything works (Yuqing just tested for one user so)
-    Create account & login
-
-    Click create a story, enter fields.
-
-    You should be redirected to home page, click add to story
-
-    you should see the story you created, click on it
-
-    you should see your username and entry you last entered when creating it. Enter a new entry.
-
-    You should be redirected to home page, click add to story again, you shouldn't see anything since you can't
-    add to a story twice
-async def print_joke():
-    j = await Jokes()  # Initialise the class
-    await j.get_joke()  # Retrieve a random joke
-    if joke["type"] == "single": # Print the joke
-        print(joke["joke"])
-    else:
-        print(joke["setup"])
-        print(joke["delivery"])
-
-asyncio.run(print_joke())
-Somebody test out multi users.
-"""
 @app.route("/", methods=['GET', 'POST'])
 def disp_loginpage():
     print("\n\n\n")
@@ -92,7 +64,7 @@ def disp_loginpage():
     return render_template('login.html') # otherwise render login page
 
 
-@app.route("/home", methods=['GET', 'POST'])
+@app.route("/home", methods=['GET', 'POST']) #I temperarily Commented Everything out so at least the page loaded
 def load_home():
     #j = await Jokes()  # Initialise the class
     #await j.get_joke()  # Retrieve a random joke
@@ -101,27 +73,27 @@ def load_home():
     #else:
     #    joke01 = print(joke["setup"])
     #    joke02 = print(joke["delivery"])
-    key = "537460653fc3495991100368458ce398"
-    keys = {
-        'grant_type': 'client_credentials',
-        'client_id': "537460653fc3495991100368458ce398",
-        'client_secret': "cb27fce0a98e4d7d9aaccc5d930ba1a8",
-    }
-    data = urllib.parse.urlencode(keys)
-    data = data.encode("ascii")
-    response = urllib.request.urlopen("https://accounts.spotify.com/api/token",data=data) # join key with base url
-    print(response)
-    json_stuff = json.loads(response.read())  
-    print(json_stuff)
-    # base URL of all Spotify API endpoints
-    BASE_URL = 'https://api.spotify.com/v1/'
+    # key = "537460653fc3495991100368458ce398"
+    # keys = {
+    #     'grant_type': 'client_credentials',
+    #     'client_id': "537460653fc3495991100368458ce398",
+    #     'client_secret': "cb27fce0a98e4d7d9aaccc5d930ba1a8",
+    # }
+    # data = urllib.parse.urlencode(keys)
+    # data = data.encode("ascii")
+    # response = urllib.request.urlopen("https://accounts.spotify.com/api/token",data=data) # join key with base url
+    # print(response)
+    # json_stuff = json.loads(response.read())  
+    # print(json_stuff)
+    # # base URL of all Spotify API endpoints
+    # BASE_URL = 'https://api.spotify.com/v1/'
 
-    # Track ID from the URI
-    track_id = '6y0igZArWVi6Iz0rj35c1Y'
+    # # Track ID from the URI
+    # track_id = '6y0igZArWVi6Iz0rj35c1Y'
 
-    # actual GET request with proper header
-    r = urllib.request.urlopen(BASE_URL + 'audio-features/' + track_id, data=data)
-    print(json.loads(response.read()))
+    # # actual GET request with proper header
+    # r = urllib.request.urlopen(BASE_URL + 'audio-features/' + track_id, data=data)
+    # print(json.loads(response.read()))
     return render_template('home.html', name = session["login"]) # render login page with an error message
 
 
