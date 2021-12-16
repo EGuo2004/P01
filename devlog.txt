@@ -34,11 +34,18 @@ ericG, michaelB, josephineL, yoonahC -- 2021-12-13 09:26
 Set up the base style for the entire site, must flush out bootstrap
 Troubleshooting login, mostly done, some bugs still
 
+ericG -- 2021-12-14 09:04
+Styled buttons and textboxes with bootstrap
+
 josephineL -- 2021-12-14 09:20
 Started to set up joke API, installed joke API python wrapper
 
 yoonahC -- 2021-12-14 09:22
 Worked on timer.html backend and frontend portion.
+
+ericG -- 2021-12-15 08:46
+Worked on error message bars
+Fixed error when opening home page
 
 michaelB -- 2021-12-15 08:46
 Fix bug with urllib.request; start authentication with Spotify.
