@@ -64,3 +64,6 @@ Worked on timer.html and added/edited its CSS page.
 
 yoonahC -- 2021-12-17 09:23
 Worked on timer.html. Mocked up break.html.
+
+josephineL -- 2021-12-17 09:24
+Started linking kanye rest API.
