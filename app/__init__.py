@@ -109,6 +109,12 @@ def load_home():
     data = json_stuff["data"]
     funFact = data["fact"]
 
+    #Kanye Rest API
+    #response2 = urllib.request.urlopen("https://api.kanye.rest/")
+    #json_stuff2 = json.loads(response2.read())
+    #quote = json_stuff2["quote"]
+    #kanyeQuote = quote)
+
 
     return render_template('home.html', name = session["login"], fact = funFact) # render login page with an error message
 
