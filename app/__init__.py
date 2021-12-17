@@ -18,7 +18,7 @@ app.secret_key = urandom(32) #generates random key
 def disp_timerpage():
 	return render_template('timer.html')
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
     print("\n\n\n")
     print("***DIAG: this Flask obj ***")
@@ -61,15 +61,15 @@ def disp_loginpage():
             if(error == ""):
                 session["login"] = name_input
                 print("hello")
-                return redirect("/home") # render welcome page
+                return redirect("/auth") # auth with spotify
         except Exception as e:
             error = e
         return render_template('login.html', error_message = error) # render login page with an error message
     return render_template('login.html') # otherwise render login page
 
 
-@app.route("/home", methods=['GET', 'POST']) #I temperarily Commented Everything out so at least the page loaded
-def load_home():
+@app.route("/auth", methods=['GET', 'POST', 'PUT']) #I temperarily Commented Everything out so at least the page loaded
+def spotify_auth():
     #j = await Jokes()  # Initialise the class
     #await j.get_joke()  # Retrieve a random joke
     #if joke["type"] == "single": # Print the joke
@@ -78,28 +78,40 @@ def load_home():
     #    joke01 = print(joke["setup"])
     #    joke02 = print(joke["delivery"])
     key = "537460653fc3495991100368458ce398"
-    keys = {
-         'grant_type': 'client_credentials',
-         'client_id': "537460653fc3495991100368458ce398",
-         'client_secret': "cb27fce0a98e4d7d9aaccc5d930ba1a8",
-    }
-    data = urllib.parse.urlencode(keys)
-    data = data.encode("ascii")
-    response = urllib.request.urlopen("https://accounts.spotify.com/api/token",data=data) # join key with base url
-    print(response)
-    json_stuff = json.loads(response.read())
-    print(json_stuff)
+    # json_stuff = json.loads(response.read())  
+    # print(json_stuff)
     # headers = {
     #     'Authorization': 'Bearer {token}'.format(token=json_stuff["access_token"])
     # }
     # base URL of all Spotify API endpoints
-    BASE_URL = 'https://api.spotify.com/v1/'
+    # BASE_URL = 'https://api.spotify.com/v1/'
 
-    # Track ID from the URI
-    track_id = '6y0igZArWVi6Iz0rj35c1Y'
+    # # Track ID from the URI
+    # track_id = '6y0igZArWVi6Iz0rj35c1Y'
+    # print('Bearer {token}'.format(token=json_stuff["access_token"]))
+    # # actual GET request with proper header
+    # req = urllib.request.Request("https://api.spotify.com/v1/me/player/devices",method="GET")
+    
+    # response = urllib.request.urlopen(req)
+    # print(json.loads(response.read()))
+    return redirect("https://accounts.spotify.com/authorize?client_id="+key+"&response_type=code&redirect_uri=http://127.0.0.1:5000/home")
+    # return render_template('home.html', name = session["login"]) # render login page with an error message
 
-    # actual GET request with proper header
-    req = urllib.request.Request(BASE_URL + 'audio-features/' + track_id)
+@app.route("/home", methods=['GET', 'POST', 'PUT']) #I temperarily Commented Everything out so at least the page loaded
+def load_home():
+    print(request.args["code"])
+    keys = {
+        "code": request.args["code"],
+        "redirect_uri": "http://127.0.0.1:5000/home",
+        "grant_type": 'authorization_code'
+    }
+    print(keys)
+    data = urllib.parse.urlencode(keys)
+    data = data.encode('ascii')
+    response = urllib.request.urlopen("https://accounts.spotify.com/api/token", data=data)
+    json_stuff = json.loads(response.read())  
+    print(json_stuff)
+    req = urllib.request.Request("https://api.spotify.com/v1/me/player/devices",method="GET")
     req.add_header('Authorization', 'Bearer {token}'.format(token=json_stuff["access_token"]))
     response = urllib.request.urlopen(req)
     print(json.loads(response.read()))
