@@ -59,5 +59,8 @@ Set up authentication with the Spotify API, and successfully obtain a response.
 josephineL -- 2021-12-16 09:19
 Started linking fun facts API.
 
-yoonahC --2021-12-16 09:25
+yoonahC -- 2021-12-16 09:25
 Worked on timer.html and added/edited its CSS page.
+
+yoonahC -- 2021-12-17 09:23
+Worked on timer.html. Mocked up break.html.
