@@ -54,7 +54,7 @@ yoonahC -- 2021-12-15 15:48
 Fixed bug in login.html and register.html to display form boxes in center of screen.
 
 michaelB -- 2021-12-16 09:04
-Set up authentication with the Spotify API, and successfully obtain a response.
+Set up authentication with the Spotify API, and successfully obtained a response.
 
 josephineL -- 2021-12-16 09:19
 Started linking fun facts API.
@@ -67,3 +67,6 @@ Worked on timer.html. Mocked up break.html.
 
 josephineL -- 2021-12-17 09:24
 Started linking kanye rest API.
+
+michaelB -- 2021-12-17 12:12
+Set up logging into Spotify account to play music.
