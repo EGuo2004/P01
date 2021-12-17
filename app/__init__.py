@@ -14,6 +14,10 @@ import sqlite3   #enable control of an sqlite database
 app = Flask(__name__)    #create Flask object
 app.secret_key = urandom(32) #generates random key
 
+@app.route("/timer",methods=['GET', 'POST'])
+def disp_timerpage():
+	return render_template('timer.html')
+
 @app.route("/", methods=['GET', 'POST'])
 def disp_loginpage():
     print("\n\n\n")
@@ -107,7 +111,6 @@ def load_home():
 
 
     return render_template('home.html', name = session["login"], fact = funFact) # render login page with an error message
-
 
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account_render():
