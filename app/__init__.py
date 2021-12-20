@@ -18,6 +18,10 @@ app.secret_key = urandom(32) #generates random key
 def disp_timerpage():
 	return render_template('timer.html')
 
+@app.route("/break",methods=['GET', 'POST'])
+def disp_breakpage():
+	return render_template('break.html')
+
 @app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
     print("\n\n\n")
