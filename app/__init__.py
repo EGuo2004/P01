@@ -125,14 +125,13 @@ def load_home():
     data = json_stuff["data"]
     funFact = data["fact"]
 
-    #Kanye Rest API
-    #response2 = urllib.request.urlopen("https://api.kanye.rest/")
-    #json_stuff2 = json.loads(response2.read())
-    #quote = json_stuff2["quote"]
-    #kanyeQuote = quote)
+    response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
+    json_stuff2 = json.loads(response2.read())
+    inspiration = json_stuff2["quote"]
+    
 
 
-    return render_template('home.html', name = session["login"], fact = funFact) # render login page with an error message
+    return render_template('home.html', name = session["login"], fact = funFact, inspirationQuote = inspiration) # render login page with an error message
 
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account_render():
