@@ -65,15 +65,15 @@ def disp_loginpage():
             if(error == ""):
                 session["login"] = name_input
                 print("hello")
-                return redirect("/auth") # auth with spotify
+                return redirect("/home") # auth with spotify
         except Exception as e:
             error = e
         return render_template('login.html', error_message = error) # render login page with an error message
     return render_template('login.html') # otherwise render login page
 
 
-@app.route("/auth", methods=['GET', 'POST', 'PUT']) #I temperarily Commented Everything out so at least the page loaded
-def spotify_auth():
+#@app.route("/auth", methods=['GET', 'POST', 'PUT']) #I temperarily Commented Everything out so at least the page loaded
+#def spotify_auth():
     #j = await Jokes()  # Initialise the class
     #await j.get_joke()  # Retrieve a random joke
     #if joke["type"] == "single": # Print the joke
@@ -81,7 +81,7 @@ def spotify_auth():
     #else:
     #    joke01 = print(joke["setup"])
     #    joke02 = print(joke["delivery"])
-    key = "537460653fc3495991100368458ce398"
+    #key = "537460653fc3495991100368458ce398"
     # json_stuff = json.loads(response.read())  
     # print(json_stuff)
     # headers = {
@@ -98,40 +98,40 @@ def spotify_auth():
     
     # response = urllib.request.urlopen(req)
     # print(json.loads(response.read()))
-    return redirect("https://accounts.spotify.com/authorize?client_id="+key+"&response_type=code&redirect_uri=http://127.0.0.1:5000/home")
+    #return redirect("https://accounts.spotify.com/authorize?client_id="+key+"&response_type=code&redirect_uri=http://127.0.0.1:5000/home")
     # return render_template('home.html', name = session["login"]) # render login page with an error message
 
-@app.route("/home", methods=['GET', 'POST', 'PUT']) #I temperarily Commented Everything out so at least the page loaded
+@app.route("/home", methods=['GET', 'POST', 'PUT']) 
 def load_home():
-    print(request.args["code"])
-    keys = {
-        "code": request.args["code"],
-        "redirect_uri": "http://127.0.0.1:5000/home",
-        "grant_type": 'authorization_code'
-    }
-    print(keys)
-    data = urllib.parse.urlencode(keys)
-    data = data.encode('ascii')
-    response = urllib.request.urlopen("https://accounts.spotify.com/api/token", data=data)
-    json_stuff = json.loads(response.read())  
-    print(json_stuff)
-    req = urllib.request.Request("https://api.spotify.com/v1/me/player/devices",method="GET")
-    req.add_header('Authorization', 'Bearer {token}'.format(token=json_stuff["access_token"]))
-    response = urllib.request.urlopen(req)
-    print(json.loads(response.read()))
+    #print(request.args["code"])
+    #keys = {
+        #"code": request.args["code"],
+        #"redirect_uri": "http://127.0.0.1:5000/home",
+        #"grant_type": 'authorization_code'
+    #}
+    #print(keys)
+    #data = urllib.parse.urlencode(keys)
+    #data = data.encode('ascii')
+    #response = urllib.request.urlopen("https://accounts.spotify.com/api/token", data=data)
+    #json_stuff = json.loads(response.read())  
+    #print(json_stuff)
+    #req = urllib.request.Request("https://api.spotify.com/v1/me/player/devices",method="GET")
+    #req.add_header('Authorization', 'Bearer {token}'.format(token=json_stuff["access_token"]))
+    #response = urllib.request.urlopen(req)
+    #print(json.loads(response.read()))
 
     response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
     json_stuff = json.loads(response.read())
     data = json_stuff["data"]
     funFact = data["fact"]
 
-    response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
-    json_stuff2 = json.loads(response2.read())
-    inspiration = json_stuff2["quote"]
+    #response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
+    #json_stuff2 = json.loads(response2.read())
+    #inspiration = json_stuff2["quote"]
     
 
 
-    return render_template('home.html', name = session["login"], fact = funFact, inspirationQuote = inspiration) # render login page with an error message
+    return render_template('home.html', name = session["login"], fact = funFact) # render login page with an error message
 
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account_render():
