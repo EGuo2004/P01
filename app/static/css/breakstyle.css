@@ -1,0 +1,16 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+   background-color: lightgray;
+}
+
+h1 {
+   color: var(--bs-purple);
+   text-align: center;
+   padding: 15px;
+}
+
+#formed {
+   color: var(--bs-purple);
+   text-align: center;
+}
