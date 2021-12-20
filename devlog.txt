@@ -76,3 +76,6 @@ Started linking inspirational quotes API.
 
 yoonahC -- 2021-12-20 09:26
 Edited break.html to add components and changed breakstyle.css
+
+michaelB -- 2021-12-20 10:05
+Remove all Spotify API calls, as we are now using SoundCloud.

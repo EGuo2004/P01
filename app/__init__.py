@@ -81,44 +81,10 @@ def disp_loginpage():
     #else:
     #    joke01 = print(joke["setup"])
     #    joke02 = print(joke["delivery"])
-    #key = "537460653fc3495991100368458ce398"
-    # json_stuff = json.loads(response.read())  
-    # print(json_stuff)
-    # headers = {
-    #     'Authorization': 'Bearer {token}'.format(token=json_stuff["access_token"])
-    # }
-    # base URL of all Spotify API endpoints
-    # BASE_URL = 'https://api.spotify.com/v1/'
-
-    # # Track ID from the URI
-    # track_id = '6y0igZArWVi6Iz0rj35c1Y'
-    # print('Bearer {token}'.format(token=json_stuff["access_token"]))
-    # # actual GET request with proper header
-    # req = urllib.request.Request("https://api.spotify.com/v1/me/player/devices",method="GET")
     
-    # response = urllib.request.urlopen(req)
-    # print(json.loads(response.read()))
-    #return redirect("https://accounts.spotify.com/authorize?client_id="+key+"&response_type=code&redirect_uri=http://127.0.0.1:5000/home")
-    # return render_template('home.html', name = session["login"]) # render login page with an error message
 
 @app.route("/home", methods=['GET', 'POST', 'PUT']) 
 def load_home():
-    #print(request.args["code"])
-    #keys = {
-        #"code": request.args["code"],
-        #"redirect_uri": "http://127.0.0.1:5000/home",
-        #"grant_type": 'authorization_code'
-    #}
-    #print(keys)
-    #data = urllib.parse.urlencode(keys)
-    #data = data.encode('ascii')
-    #response = urllib.request.urlopen("https://accounts.spotify.com/api/token", data=data)
-    #json_stuff = json.loads(response.read())  
-    #print(json_stuff)
-    #req = urllib.request.Request("https://api.spotify.com/v1/me/player/devices",method="GET")
-    #req.add_header('Authorization', 'Bearer {token}'.format(token=json_stuff["access_token"]))
-    #response = urllib.request.urlopen(req)
-    #print(json.loads(response.read()))
 
     response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
     json_stuff = json.loads(response.read())
