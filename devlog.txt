@@ -73,3 +73,6 @@ Set up logging into Spotify account to play music.
 
 josephineL -- 2021-12-20 09:22
 Started linking inspirational quotes API.
+
+yoonahC -- 2021-12-20 09:26
+Edited break.html to add components and changed breakstyle.css
