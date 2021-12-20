@@ -70,3 +70,6 @@ Started linking kanye rest API.
 
 michaelB -- 2021-12-17 12:12
 Set up logging into Spotify account to play music.
+
+josephineL -- 2021-12-20 09:22
+Started linking inspirational quotes API.
