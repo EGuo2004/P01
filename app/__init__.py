@@ -14,42 +14,29 @@ import time
 app = Flask(__name__)    #create Flask object
 app.secret_key = urandom(32) #generates random key
 
-timer = None
+minute = None
 timeStart = None
 @app.route("/timer",methods=['GET', 'POST'])
 def disp_timerpage():
-    global timer
-    print(timer)
-    timer = checkTime()
-    if timer != None:
-        parts = timer.split(":")
-        if(parts[1][0] == "0"):
-            parts[1] = parts[1][1]
-        seconds = int(parts[0]) * 60 + int(parts[1])
-        if seconds <= 0:
+    global minute
+    minute = checkTime()
+    if minute != None:
+        if minute <= 0:
             timer = None
             timeStart = None
             return redirect("/break")
     else:
-        if "timer" in request.form and timer == None:
-            timer = request.form["timer"] + ":00"
-    return render_template('timer.html', minute=timer)
+        if "timer" in request.form and minute == None:
+            minute = int(request.form["timer"])
+    return render_template('timer.html', minute=minute)
 def checkTime():
-    global timer
+    global minute
     global timeStart
-    if(timer != None):
-        parts = timer.split(":")
-        if(parts[1][0] == "0"):
-            parts[1] = parts[1][1]
-        seconds = int(parts[0]) * 60 + int(parts[1])
-        if((time.time() - timeStart) >= 0.8): # subtract out refresh time
-            seconds -= 1
+    if(minute != None):
+        if((time.time() - timeStart) >= 60): 
+            minute -= 1
             timeStart = time.time() # start time changes every minute
-        sec = str(seconds % 60)
-        if len(sec) <= 1:
-            sec = "0" + sec
-        timer = str(int(seconds / 60)) + ":" + sec
-        return timer
+        return minute
     if(timeStart == None):
         timeStart = time.time() # initialize start time
         return None
@@ -59,7 +46,11 @@ def checkTime():
 
 @app.route("/break",methods=['GET', 'POST'])
 def disp_breakpage():
-	return render_template('break.html')
+	#response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
+	#json_stuff2 = json.loads(response2.read())
+	#inspiration = json_stuff2["quote"]
+	#inspirationQuote = inspiration
+	return render_template('break.html', name=session["login"])
 
 @app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
