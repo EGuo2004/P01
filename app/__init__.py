@@ -46,6 +46,10 @@ def checkTime():
 
 @app.route("/break",methods=['GET', 'POST'])
 def disp_breakpage():
+	#response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
+	#json_stuff2 = json.loads(response2.read())
+	#inspiration = json_stuff2["quote"]
+	#inspirationQuote = inspiration
 	return render_template('break.html', name=session["login"])
 
 @app.route("/", methods=['GET', 'POST', 'PUT'])
