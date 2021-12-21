@@ -77,6 +77,9 @@ Started linking inspirational quotes API.
 yoonahC -- 2021-12-20 09:26
 Edited break.html to add components and changed breakstyle.css
 
+ericG -- 2021-12-20 09:26
+Commented out all Spotify code as it was breaking stuff
+
 michaelB -- 2021-12-20 10:05
 Remove all Spotify API calls, as we are not using it anymore.
 
@@ -85,3 +88,7 @@ Add preliminary timer to timer page.
 
 michaelB -- 2021-12-21 09:09
 Simplify timer to make it only show minutes; fix bug in break page that was causing it to not render the name.
+
+
+ericG -- 2021-12-21 09:26
+Styled timer and made a better landing page
