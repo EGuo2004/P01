@@ -11,6 +11,10 @@
     <form action="/"> <!-- go back to login page -->
       <input class="btn btn-success" style="width:75px" type="submit" value="Logout" name="sub2">
     </form>
+    <br>
+    <form action="/"> <!-- go back to home page -->
+      <input class="btn btn-success float-right" style="width:175px" type="submit" value="Back to home page">
+    </form>
     <center>
     <h1>
         Hey {{name}}!
@@ -20,43 +24,48 @@
         Why don't you take a small break?
     </h2>
     <br><br>
-    {{ inspirationQuote }}
   </center>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-
-
-<p>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Click to see a fun fact!
-  </button>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Fun fact placeholder
-  </div>
-</div>
-
-<div id="carouselArt" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="Picture 1">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="Picture 2">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="Picture 3">
+  <p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Click to see a fun fact!
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      {{ fact }}
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+  <br><br>
+
+  <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content= "{{ inspirationQuote }}">
+  Click for a very inspirational quote to keep ya going!
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
+
+  <br><br>
+
+  <div id="carouselArt" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="..." class="d-block w-100" alt="Picture 1">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="Picture 2">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="Picture 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselArt" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselArt" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
 
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </html>
