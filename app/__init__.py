@@ -51,7 +51,7 @@ def disp_breakpage():
         json_stuff = json.loads(response.read())
         data = json_stuff["data"]
         funFact = data["fact"]
-	    return render_template('break.html', name=session["login"], fact = funFact)
+        return render_template('break.html', name=session["login"], fact = funFact)
     return redirect("/")
 @app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
