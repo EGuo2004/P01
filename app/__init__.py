@@ -117,12 +117,20 @@ def disp_loginpage():
 @app.route("/home", methods=['GET', 'POST', 'PUT']) 
 def load_home(): 
     if('login' in session and session['login'] != False): # check if user is logged in
-        
-        #response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
-        #json_stuff2 = json.loads(response2.read())
-        #inspiration = json_stuff2["quote"]
+
+        response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
+        json_stuff = json.loads(response.read())
+        data = json_stuff["data"]
+        funFact = data["fact"]
+
+        req = urllib.request.Request("http://api.kanye.rest/")
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0')
+        response2 = urllib.request.urlopen(req)
+        json_stuff2 = json.loads(response2.read())
+        print(json_stuff2)
+        inspiration = json_stuff2["quote"]
     
-        return render_template('home.html', name = session["login"]) # render login page with an error message
+        return render_template('home.html', name = session["login"], fact = funFact, inspirationQuote=inspiration) # render login page with an error message
     return redirect("/") # if not logged in, go to login page
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account_render():
