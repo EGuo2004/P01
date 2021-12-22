@@ -14,51 +14,48 @@ import time
 app = Flask(__name__)    #create Flask object
 app.secret_key = urandom(32) #generates random key
 
-minute = None
-timeStart = None
+
 @app.route("/timer",methods=['GET', 'POST'])
 def disp_timerpage():
-    global minute
-    minute = checkTime()
-    if minute != None:
-        if minute <= 0:
-            timer = None
-            timeStart = None
-            return redirect("/break")
-    else:
-        if "timer" in request.form and minute == None:
-            minute = int(request.form["timer"])
-    return render_template('timer.html', minute=minute)
+    if('login' in session and session['login'] != False):
+        db.setMinute(session["login"], checkTime())
+        minute = db.getMinute(session["login"])
+        if minute != "None":
+            if minute <= 0:
+                db.setMinute(session["login"], "None")
+                db.setTime(session["login"], "None")
+                return redirect("/break")
+        else:
+            if "timer" in request.form and minute == "None":
+                db.setMinute(session["login"], int(request.form["timer"]))
+        return render_template('timer.html', minute=db.getMinute(session["login"]))
+    return redirect("/")
 def checkTime():
-    global minute
-    global timeStart
-    if(minute != None):
-        if((time.time() - timeStart) >= 60): 
-            minute -= 1
-            timeStart = time.time() # start time changes every minute
-        return minute
-    if(timeStart == None):
-        timeStart = time.time() # initialize start time
-        return None
-    return None
+    minute = db.getMinute(session["login"])
+    if(minute != "None"):
+        if((time.time() - db.getTime(session["login"])) >= 60): 
+            db.setMinute(session["login"], minute - 1)
+            db.setTime(session["login"], time.time()) # start time changes every minute
+        return db.getMinute(session["login"])
+    if(db.getTime(session["login"]) == "None"):
+        db.setTime(session["login"], time.time()) # initialize start time
+        return "None"
+    return "None"
 
     
 
 @app.route("/break",methods=['GET', 'POST'])
 def disp_breakpage():
-	#response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
-	#json_stuff2 = json.loads(response2.read())
-	#inspiration = json_stuff2["quote"]
-	#inspirationQuote = inspiration
-	return render_template('break.html', name=session["login"])
-
+    if('login' in session and session['login'] != False):
+	    return render_template('break.html', name=session["login"])
+    return redirect("/")
 @app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
     print("\n\n\n")
     print("***DIAG: this Flask obj ***")
     print(app)
     print("***DIAG: request obj ***")
-    print(request)
+    print(request) 
     # print("***DIAG: request.args ***")
     # print(request.args)
     # print("***DIAG: request.args['username']  ***")
@@ -114,21 +111,19 @@ def disp_loginpage():
     
 
 @app.route("/home", methods=['GET', 'POST', 'PUT']) 
-def load_home():
+def load_home(): 
+    if('login' in session and session['login'] != False): # check if user is logged in
+        response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
+        json_stuff = json.loads(response.read())
+        data = json_stuff["data"]
+        funFact = data["fact"]
 
-    response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
-    json_stuff = json.loads(response.read())
-    data = json_stuff["data"]
-    funFact = data["fact"]
-
-    #response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
-    #json_stuff2 = json.loads(response2.read())
-    #inspiration = json_stuff2["quote"]
+        #response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
+        #json_stuff2 = json.loads(response2.read())
+        #inspiration = json_stuff2["quote"]
     
-
-
-    return render_template('home.html', name = session["login"], fact = funFact) # render login page with an error message
-
+        return render_template('home.html', name = session["login"], fact = funFact) # render login page with an error message
+    return redirect("/") # if not logged in, go to login page
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account_render():
     # check if input exists by checking if username input is in request dictionary

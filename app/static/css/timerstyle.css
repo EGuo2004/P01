@@ -1,10 +1,19 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 body {
+<<<<<<< HEAD
    background-color: powderblue;
+=======
+   background-color: lightgray;
+   color: var(--bs-purple);
+>>>>>>> cf7ba1de3d69b7c7d0eec77b8fa644ab6a3293de
 }
 
 h1 {
    text-align: center;
    padding: 15px;
+}
+
+p {
+   text-align: center;
 }
