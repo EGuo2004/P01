@@ -95,5 +95,8 @@ Edited break page to have carousel and collapse button feature.
 ericG -- 2021-12-21 09:26
 Styled timer and made a better landing page
 
-josephineL - 2021-12-21 09:26
+josephineL -- 2021-12-21 09:26
 Linked fun facts to break.html. Started linking Harvard Art Museums.
+
+michaelB -- 2021-12-21 19:21
+Integrate timer with database to avoid setting a time for all users.

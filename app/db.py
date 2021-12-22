@@ -14,11 +14,9 @@ c = db.cursor()
 #create tables for database
 command = "CREATE TABLE IF NOT EXISTS "
 
-# Creating table that contains username | password | stories contributed, usernames must be unique
-c.execute (command + "user_info (username TEXT, password TEXT, stories_contributed TEXT, CONSTRAINT uni_user UNIQUE(username))")
+# Creating table that contains username | password | currentTime | minute, usernames must be unique
+c.execute (command + "user_info (username TEXT, password TEXT, currentTime INTEGER, minute INTEGER, CONSTRAINT uni_user UNIQUE(username))")
 
-# creating table with story title | user contributed | story entry, titles must be unique
-c.execute (command + "story (title TEXT type UNIQUE, contributor TEXT, entry TEXT)")
 
 def get_login(username, password):
     """
@@ -74,8 +72,42 @@ def add_login(username, password):
     c = db.cursor()
 
     # add username and password pair to database, no stories_contributed blank at account creation
-    command = "INSERT INTO user_info VALUES(?, ?, ?)"
-    c.execute(command, (username, password, ""))
+    command = "INSERT INTO user_info VALUES(?, ?, ?, ?)"
+    c.execute(command, (username, password, "None", "None"))
 
     # commit changes to db
+    db.commit()
+
+def getTime(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = f"SELECT * FROM user_info WHERE (username = \"{username}\")"
+    c.execute(command)
+    data = c.fetchall()
+    print(data)
+    return data[0][2]
+
+def getMinute(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = f"SELECT * FROM user_info WHERE (username = \"{username}\")"
+    c.execute(command)
+    data = c.fetchall()
+    print(data)
+    return data[0][3]
+
+def setTime(username, time):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = f"UPDATE user_info SET currentTime=\"{time}\" WHERE (username = \"{username}\")"
+    print(command)
+    c.execute(command)
+    db.commit()
+    
+def setMinute(username, minute):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = f"UPDATE user_info SET minute=\"{minute}\" WHERE (username = \"{username}\")"
+    print(command)
+    c.execute(command)
     db.commit()
