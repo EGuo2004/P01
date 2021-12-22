@@ -100,3 +100,6 @@ Linked fun facts to break.html. Started linking Harvard Art Museums.
 
 michaelB -- 2021-12-21 19:21
 Integrate timer with database to avoid setting a time for all users.
+
+josephineL -- 2021-12-22 09:24
+Moved fun fact to break page with button dropdown.
