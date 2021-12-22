@@ -106,3 +106,6 @@ Moved fun fact to break page with button dropdown.
 
 yoonahC -- 2021-12-22 09:26
 Added components to break page including buttons/features for inspirational quotes, fun facts, and button to redirect back to home page.
+
+michaelB -- 2021-12-22 11:59
+Linked KanyeWestQuotes API to home page. Will move to break page later.

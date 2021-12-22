@@ -122,7 +122,6 @@ def load_home():
         json_stuff = json.loads(response.read())
         data = json_stuff["data"]
         funFact = data["fact"]
-
         req = urllib.request.Request("http://api.kanye.rest/")
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0')
         response2 = urllib.request.urlopen(req)
