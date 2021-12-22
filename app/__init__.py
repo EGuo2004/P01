@@ -117,7 +117,6 @@ def load_home():
         json_stuff = json.loads(response.read())
         data = json_stuff["data"]
         funFact = data["fact"]
-
         #response2 = urllib.request.urlopen("https://inspiration.goprogram.ai/")
         #json_stuff2 = json.loads(response2.read())
         #inspiration = json_stuff2["quote"]
