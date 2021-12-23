@@ -53,6 +53,11 @@ def disp_breakpage():
         funFact = data["fact"]
         return render_template('break.html', name=session["login"], fact = funFact)
     return redirect("/")
+
+@app.route("/about",methods=['GET','POST'])
+def disp_aboutpage():
+    return render_template('about.html')
+
 @app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
     print("\n\n\n")

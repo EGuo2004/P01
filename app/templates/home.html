@@ -9,29 +9,33 @@
 <body>
 <h1>
 Welcome to Breakbuddy! 
-</h1>
-<br><br>
-<h5>
-In 1492, Columbus "discovered" the Americas. On this splendid day, you "discovered" I, the great BreakBuddy. I was created by a group of students known as the Softlocked Ducks, not much is known about their origin as I am their only creation.
-</h5>
-<br><br>
-<h4>
-A Message From Softlocked Ducks
-</h4>
-<h5>
-The BreakBuddy was created to assist students with optimizing their workflow, however in theory anyone can use this tool. Users are to specify how long they wish to work for and then study for, and  would be your tracker of that time. Due to the limitations that were placed upon us, our time tracking mechanism is rather inefficient but studies have shown that this tool is still extremely effective. 
-</h5>
-	
 <br><br>
 {{ inspirationQuote }}
 <br><br>
+<h6>
 {{ fact }}
-
+</h6>
+<center>
+<div class="container"> 
+<div class="row row-cols-1">
+<div class="col">
+<h6>
+To begin a session, simply set a timer for how long you wish to study for. 
+</h6>
 <form action="/timer" method="POST">
-		<input class="btn btn-success" type="submit" name="create" value="Timer Page">
+		<input class="btn btn-success" type="submit" name="create" value="Set The Timer">
 </form>
-<form action="/break" method="POST">
-		<input class="btn btn-success" type="submit" name="create" value="Break Page">
+</div>
+<h6>
+Some technobabble and background about this project. 
+</h6>
+<div class="col">
+<form action="/about" method="POST">
+		<input class="btn btn-success" type="submit" name="create" value="About The Project">
 </form>
+</div>
+</div>
+</div>
+</center>
 </body>
 </html>
