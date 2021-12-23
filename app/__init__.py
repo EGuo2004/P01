@@ -59,6 +59,11 @@ def disp_breakpage():
         inspiration = json_stuff2["quote"]
         return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration)
     return redirect("/")
+
+@app.route("/about",methods=['GET','POST'])
+def disp_aboutpage():
+    return render_template('about.html')
+
 @app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
     print("\n\n\n")

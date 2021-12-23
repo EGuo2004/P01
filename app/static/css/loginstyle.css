@@ -10,15 +10,21 @@ h1 {
    padding: 15px;
 }
 
-h4 {
+h6 {
    color: var(--bs-purple);
-   text-align: center;
+   text-align: left;
    padding: 15px;
 }
 
-h5 {
+h9 {
    color: var(--bs-purple);
-   text-align: center;
+   text-align: left;
+   padding: 15px;
+}
+
+h10 {
+   color: var(--bs-purple);
+   text-align: left;
    padding: 15px;
 }
 
