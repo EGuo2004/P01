@@ -109,3 +109,6 @@ Added components to break page including buttons/features for inspirational quot
 
 michaelB -- 2021-12-22 11:59
 Linked KanyeWestQuotes API to home page. Will move to break page later.
+
+josephineL -- 2021-12-23 09:10
+Moved KanyeWestQuotes API to break page and made card for it.
