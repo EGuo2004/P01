@@ -19,6 +19,12 @@
           <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time(Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
         </form>
       </center>
+    {% elif minute <= 0 %}
+    <center>
+      <form action="/timer" method="POST">
+        <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time(Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
+      </form>
+    </center>
     {% else %}
       <meta http-equiv="refresh" content="60">
       <p> There are {{minute}} minutes left. </p>

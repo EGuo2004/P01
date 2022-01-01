@@ -5,6 +5,7 @@ from flask import session           #allow for session creation/maintenance
 from flask import redirect
 import urllib
 import json
+import random
 from os import urandom
 # from jokeapi import Jokes
 import asyncio
@@ -57,7 +58,21 @@ def disp_breakpage():
         json_stuff2 = json.loads(response2.read())
         print(json_stuff2)
         inspiration = json_stuff2["quote"]
-        return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration)
+        req = urllib.request.Request("https://api.harvardartmuseums.org/image?apikey=69d2bd5c-a9a8-4814-a1e8-91de095131fb")
+        response2 = urllib.request.urlopen(req)
+        json_stuff2 = json.loads(response2.read())
+        print(len(json_stuff2["records"]))
+        randInt0 = random.randint(0, len(json_stuff2["records"]))
+        randInt1 = random.randint(0, len(json_stuff2["records"]))
+        randInt2 = random.randint(0, len(json_stuff2["records"]))
+        # regenerate integers until they are unique
+        while(randInt0 == randInt1 or randInt1 == randInt2 or randInt2 == randInt0):
+            randInt0 = random.randint(0, len(json_stuff2["records"]))
+            randInt1 = random.randint(0, len(json_stuff2["records"]))
+            randInt2 = random.randint(0, len(json_stuff2["records"]))
+        images = [json_stuff2["records"][randInt0]["baseimageurl"], json_stuff2["records"][randInt1]["baseimageurl"], json_stuff2["records"][randInt2]["baseimageurl"]]
+        print(images)
+        return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration, images=images)
     return redirect("/")
 
 @app.route("/about",methods=['GET','POST'])

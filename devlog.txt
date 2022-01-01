@@ -118,3 +118,6 @@ Moved KanyeWestQuotes API to break page and made card for it.
 
 ericG -- 2021-12-23 09:17
 Spent most of my time fixing merge errors, then worked on styling timer more 
+
+michaelB -- 2022-01-01 15:15
+Linked Harvard Art Museums to break page, added images to carousel. Fix bug in timer with negative times. 
