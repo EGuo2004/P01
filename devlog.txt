@@ -124,3 +124,6 @@ Linked Harvard Art Museums to break page, added images to carousel. Fix bug in t
 
 ericG -- 2022-01-03 00:42
 Styled timer page to be the same as the rest of the site, might add some pictures or something
+
+yoonahC -- 2022-01-03 09:24
+Fixed errors in break.html and centered buttons.
