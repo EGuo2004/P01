@@ -24,8 +24,11 @@
       <form action="/timer" method="POST">
         <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time(Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
       </form>
+	<div class="alert alert-danger" style="width:500px" role="alert">
+		First you might want to google how time works. Input a valid time when you return.
+	</div>
     </center>
-    <center>=
+    <center>
     {% else %}
       <meta http-equiv="refresh" content="60">
       <h1> 
