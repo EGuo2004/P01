@@ -130,3 +130,9 @@ Fixed errors in break.html and centered buttons.
 
 josephineL -- 2022-01-03 09:25
 Fixed API keys and updated about page (font size, grammar, etc).
+
+ericG -- 2022-01-03 09:26
+Styled timer properly and added humor. Added humor and personality to about page.
+
+ericG -- 2022-01-03 11:35
+Couldn't push earlier, very annoyed but merge fixed hopefully
