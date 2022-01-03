@@ -121,3 +121,6 @@ Spent most of my time fixing merge errors, then worked on styling timer more
 
 michaelB -- 2022-01-01 15:15
 Linked Harvard Art Museums to break page, added images to carousel. Fix bug in timer with negative times. 
+
+ericG -- 2022-01-03 00:42
+Styled timer page to be the same as the rest of the site, might add some pictures or something
