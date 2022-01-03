@@ -135,4 +135,4 @@ ericG -- 2022-01-03 09:26
 Styled timer properly and added humor. Added humor and personality to about page.
 
 ericG -- 2022-01-03 11:35
-Couldn't push earlier, very annoyed but merge fixed hopefully
+Couldn't push earlier, very annoyed but merge fixed hopefully. Note: 10 minutes later- I also added an error box for when they put negative time. 
