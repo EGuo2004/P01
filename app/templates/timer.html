@@ -28,7 +28,16 @@
     <center>=
     {% else %}
       <meta http-equiv="refresh" content="60">
-      <p> There are {{minute}} minutes left. </p>
+      <h1> 
+        There are {{minute}} minutes left.
+        <br><br> 
+      </h1>
+      <h3>
+        This message is not supposed to be read. If you are reading this message, you are wasting your time, go do your work.
+      </h3>
+      <form action="/leave" method="POST">
+        <input class="btn btn-danger" type="submit" name="leave" value="Stop Timer">
+      </form>
     {% endif %}
   </center>
   </body>
