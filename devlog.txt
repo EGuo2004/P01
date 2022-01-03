@@ -127,3 +127,6 @@ Styled timer page to be the same as the rest of the site, might add some picture
 
 yoonahC -- 2022-01-03 09:24
 Fixed errors in break.html and centered buttons.
+
+josephineL -- 2022-01-03 09:25
+Fixed API keys and updated about page (font size, grammar, etc).
