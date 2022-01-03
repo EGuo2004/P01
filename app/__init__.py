@@ -17,10 +17,16 @@ app.secret_key = urandom(32) #generates random key
 
 @app.route("/leave",methods=['GET', 'POST'])
 def leave_page():
+    '''
+    Leaves timer page and goes back to the home page when the user presses the "Stop Timer" button
+    '''
     return render_template('home.html', name = session["login"])
 
 @app.route("/timer",methods=['GET', 'POST'])
 def disp_timerpage():
+    '''
+    Displays the timer/study page
+    '''
     if('login' in session and session['login'] != False):
         db.setMinute(session["login"], checkTime())
         minute = db.getMinute(session["login"])
@@ -45,11 +51,21 @@ def checkTime():
         db.setTime(session["login"], time.time()) # initialize start time
         return "None"
     return "None"
+error = "" # the e
+My project partner, Shuprovo, is in quarantine for COVID, so can we please present at one of the later dates?
 
-    
-
-@app.route("/break",methods=['GET', 'POST'])
+Thank you,
+Josephineogin"] = name_input
+                print("hello")
+                return redirect("/home") # auth with spotify
+        except Exception as e:
+            error = e
+        return render_template('login.html', error_message = error) # render login page with an error message
+    return render_template('login.html') # otherwise render login page
 def disp_breakpage():
+    '''
+    Displays the break page, links the APIs
+    '''
     if('login' in session and session['login'] != False):
         response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
         json_stuff = json.loads(response.read())
@@ -80,10 +96,16 @@ def disp_breakpage():
 
 @app.route("/about",methods=['GET','POST'])
 def disp_aboutpage():
+    '''
+    Displays about page
+    '''
     return render_template('about.html')
 
 @app.route("/", methods=['GET', 'POST', 'PUT'])
 def disp_loginpage():
+    '''
+    Displays login page and logs users in.
+    '''
     print("\n\n\n")
     print("***DIAG: this Flask obj ***")
     print(app)
@@ -145,12 +167,18 @@ def disp_loginpage():
 
 @app.route("/home", methods=['GET', 'POST', 'PUT']) 
 def load_home(): 
+    '''
+    Loads home page with buttons for timer page and about page
+    '''
     if('login' in session and session['login'] != False): # check if user is logged in
     
         return render_template('home.html', name = session["login"]) # render login page with an error message
     return redirect("/") # if not logged in, go to login page
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account_render():
+    '''
+    Creates a new account for each user
+    '''
     # check if input exists by checking if username input is in request dictionary
     if('username' in request.form or 'username' in request.args):
         name_input = "" #username input
