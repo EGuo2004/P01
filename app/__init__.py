@@ -15,6 +15,9 @@ import time
 app = Flask(__name__)    #create Flask object
 app.secret_key = urandom(32) #generates random key
 
+@app.route("/leave",methods=['GET', 'POST'])
+def leave_page():
+    return render_template('home.html', name = session["login"])
 
 @app.route("/timer",methods=['GET', 'POST'])
 def disp_timerpage():
