@@ -148,3 +148,6 @@ Edited break.html to center and edit number of minutes left of your break.
 
 yoonahC -- 2022-01-04 09:21
 Edited home.html to center text.
+
+ericG -- 2022-01-04 09:24
+Fixed various visual inconsistencies
