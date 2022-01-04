@@ -19,15 +19,6 @@
           <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time(Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
         </form>
       </center>
-    {% elif minute <= 0 %}
-    <center>
-      <form action="/timer" method="POST">
-        <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time(Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
-      </form>
-	<div class="alert alert-danger" style="width:500px" role="alert">
-		First you might want to ask someone how time works. Input a valid time when you return.
-	</div>
-    </center>
     <center>
     {% else %}
       <meta http-equiv="refresh" content="60">
@@ -39,7 +30,7 @@
         This message is not supposed to be read. If you are reading this message, you are wasting your time, go do your work.
       </h3>
       <form action="/leave" method="POST">
-        <input class="btn btn-danger" type="submit" name="leave" value="Stop Timer">
+        <input class="btn btn-danger" type="submit" name="leave" value="End Timer">
       </form>
     {% endif %}
   </center>

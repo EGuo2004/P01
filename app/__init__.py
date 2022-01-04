@@ -20,7 +20,11 @@ def leave_page():
     '''
     Leaves timer page and goes back to the home page when the user presses the "Stop Timer" button
     '''
-    return render_template('home.html', name = session["login"])
+    # reset all timers
+    db.setMinute(session["login"], "None")
+    db.setTime(session["login"], "None")
+    db.setBreakMinute(session["login"], "None")
+    return redirect("/home")
 
 @app.route("/timer",methods=['GET', 'POST'])
 def disp_timerpage():
@@ -40,7 +44,7 @@ def disp_timerpage():
             if "timer" in request.form and minute == "None" and int(request.form["timer"]) >= 0:
                 db.setMinute(session["login"], int(request.form["timer"]))
                 if(db.getBreakMinute(session["login"]) == "None"):
-                    db.setBreakMinute(session["login"], int(int(db.getMinute(session["login"])) / 3) + 1)
+                    db.setBreakMinute(session["login"], max(1, round(int(db.getMinute(session["login"])) / 3)))
                     print(db.getBreakMinute(session["login"]))
         return render_template('timer.html', minute=db.getMinute(session["login"]))
     return redirect("/")
@@ -75,8 +79,8 @@ def disp_breakpage():
     if('login' in session and session['login'] != False):
         if(db.getBreakMinute(session["login"]) == "None"): #should never equal None, unless the user used the search bar and skipped timer page
             db.setBreakMinute(session["login"], 5)
-        minute = db.getBreakMinute(session["login"])
         db.setBreakMinute(session["login"], checkTime("break"))
+        minute = db.getBreakMinute(session["login"])
         if minute != "None":
             if minute <= 0:
                 db.setBreakMinute(session["login"], "None")
@@ -186,10 +190,6 @@ def load_home():
     Loads home page with buttons for timer page and about page
     '''
     if('login' in session and session['login'] != False): # check if user is logged in
-        if('home' in request.form):
-            db.setMinute(session["login"], "None")
-            db.setTime(session["login"], "None")
-            db.setBreakMinute(session["login"], "None")
         return render_template('home.html', name = session["login"]) # render login page with an error message
     return redirect("/") # if not logged in, go to login page
 @app.route("/create_account", methods=['GET', 'POST'])
