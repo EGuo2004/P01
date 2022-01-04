@@ -42,7 +42,7 @@ def disp_timerpage():
                     db.setTime(session["login"], "None")
                     return redirect("/break")
             else:
-                if "timer" in request.form and minute == "None" and int(request.form["timer"]) >= 0:
+                if "timer" in request.form and minute == "None" and int(request.form["timer"]) > 0:
                     db.setMinute(session["login"], int(request.form["timer"]))
                     if(db.getBreakMinute(session["login"]) == "None"):
                         db.setBreakMinute(session["login"], max(1, round(int(db.getMinute(session["login"])) / 3)))
@@ -50,6 +50,21 @@ def disp_timerpage():
             return render_template('timer.html', minute=db.getMinute(session["login"]))
         except:
             return render_template('login.html', error_message = "ERROR")
+        db.setMinute(session["login"], checkTime("t"))
+        minute = db.getMinute(session["login"])
+        print(minute)
+        if minute != "None":
+            if minute <= 0:
+                db.setMinute(session["login"], "None")
+                db.setTime(session["login"], "None")
+                return redirect("/break")
+        else:
+            if "timer" in request.form and minute == "None" and int(request.form["timer"]) > 0:
+                db.setMinute(session["login"], int(request.form["timer"]))
+                if(db.getBreakMinute(session["login"]) == "None"):
+                    db.setBreakMinute(session["login"], max(1, round(int(db.getMinute(session["login"])) / 3)))
+                    print(db.getBreakMinute(session["login"]))
+        return render_template('timer.html', minute=db.getMinute(session["login"]))
     return redirect("/")
 def checkTime(type):
     if(type == "break"):
