@@ -142,3 +142,6 @@ Added docstrings to __init__.py.
 
 michaelB -- 2022-01-03 19:44
 Add timer to break page. 
+
+yoonahC -- 2022-01-04 09:12
+Edited break.html to center and edit number of minutes left of your break.

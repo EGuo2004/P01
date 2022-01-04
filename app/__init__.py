@@ -96,7 +96,9 @@ def disp_breakpage():
         json_stuff2 = json.loads(response2.read())
         print(json_stuff2)
         inspiration = json_stuff2["quote"]
-        req = urllib.request.Request("https://api.harvardartmuseums.org/image?apikey=69d2bd5c-a9a8-4814-a1e8-91de095131fb")
+        f = open("keys/key_harvardartmuseums.txt")
+        key = f.readline()
+        req = urllib.request.Request("https://api.harvardartmuseums.org/image?apikey="+key)
         response2 = urllib.request.urlopen(req)
         json_stuff2 = json.loads(response2.read())
         print(len(json_stuff2["records"]))

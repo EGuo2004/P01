@@ -16,7 +16,7 @@
     {% if minute == "None" %}
       <center>
         <form action="/timer" method="POST">
-          <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time(Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
+          <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time (Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
         </form>
       </center>
     <center>
@@ -29,9 +29,11 @@
       <h3>
         This message is not supposed to be read. If you are reading this message, you are wasting your time, go do your work.
       </h3>
+      <center>
       <form action="/leave" method="POST">
         <input class="btn btn-danger" type="submit" name="leave" value="End Timer">
       </form>
+      </center>
     {% endif %}
   </center>
   </body>
