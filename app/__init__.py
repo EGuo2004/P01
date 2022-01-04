@@ -32,21 +32,24 @@ def disp_timerpage():
     Displays the timer/study page
     '''
     if('login' in session and session['login'] != False):
-        db.setMinute(session["login"], checkTime("t"))
-        minute = db.getMinute(session["login"])
-        print(minute)
-        if minute != "None":
-            if minute <= 0:
-                db.setMinute(session["login"], "None")
-                db.setTime(session["login"], "None")
-                return redirect("/break")
-        else:
-            if "timer" in request.form and minute == "None" and int(request.form["timer"]) >= 0:
-                db.setMinute(session["login"], int(request.form["timer"]))
-                if(db.getBreakMinute(session["login"]) == "None"):
-                    db.setBreakMinute(session["login"], max(1, round(int(db.getMinute(session["login"])) / 3)))
-                    print(db.getBreakMinute(session["login"]))
-        return render_template('timer.html', minute=db.getMinute(session["login"]))
+        try:
+            db.setMinute(session["login"], checkTime("t"))
+            minute = db.getMinute(session["login"])
+            print(minute)
+            if minute != "None":
+                if minute <= 0:
+                    db.setMinute(session["login"], "None")
+                    db.setTime(session["login"], "None")
+                    return redirect("/break")
+            else:
+                if "timer" in request.form and minute == "None" and int(request.form["timer"]) >= 0:
+                    db.setMinute(session["login"], int(request.form["timer"]))
+                    if(db.getBreakMinute(session["login"]) == "None"):
+                        db.setBreakMinute(session["login"], max(1, round(int(db.getMinute(session["login"])) / 3)))
+                        print(db.getBreakMinute(session["login"]))
+            return render_template('timer.html', minute=db.getMinute(session["login"]))
+        except:
+            return render_template('login.html', error_message = "ERROR")
     return redirect("/")
 def checkTime(type):
     if(type == "break"):
@@ -77,42 +80,45 @@ def disp_breakpage():
     Displays the break page, links the APIs
     '''
     if('login' in session and session['login'] != False):
-        if(db.getBreakMinute(session["login"]) == "None"): #should never equal None, unless the user used the search bar and skipped timer page
-            db.setBreakMinute(session["login"], 5)
-        db.setBreakMinute(session["login"], checkTime("break"))
-        minute = db.getBreakMinute(session["login"])
-        if minute != "None":
-            if minute <= 0:
-                db.setBreakMinute(session["login"], "None")
-                db.setTime(session["login"], "None")
-                return redirect("/timer")
-        response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
-        json_stuff = json.loads(response.read())
-        data = json_stuff["data"]
-        funFact = data["fact"]
-        req = urllib.request.Request("http://api.kanye.rest/")
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0')
-        response2 = urllib.request.urlopen(req)
-        json_stuff2 = json.loads(response2.read())
-        print(json_stuff2)
-        inspiration = json_stuff2["quote"]
-        f = open("keys/key_harvardartmuseums.txt")
-        key = f.readline()
-        req = urllib.request.Request("https://api.harvardartmuseums.org/image?apikey="+key)
-        response2 = urllib.request.urlopen(req)
-        json_stuff2 = json.loads(response2.read())
-        print(len(json_stuff2["records"]))
-        randInt0 = random.randint(0, len(json_stuff2["records"]) - 1)
-        randInt1 = random.randint(0, len(json_stuff2["records"]) - 1)
-        randInt2 = random.randint(0, len(json_stuff2["records"]) - 1)
-        # regenerate integers until they are unique
-        while(randInt0 == randInt1 or randInt1 == randInt2 or randInt2 == randInt0):
+        try:
+            if(db.getBreakMinute(session["login"]) == "None"): #should never equal None, unless the user used the search bar and skipped timer page
+                db.setBreakMinute(session["login"], 5)
+            db.setBreakMinute(session["login"], checkTime("break"))
+            minute = db.getBreakMinute(session["login"])
+            if minute != "None":
+                if minute <= 0:
+                    db.setBreakMinute(session["login"], "None")
+                    db.setTime(session["login"], "None")
+                    return redirect("/timer")
+            response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
+            json_stuff = json.loads(response.read())
+            data = json_stuff["data"]
+            funFact = data["fact"]
+            req = urllib.request.Request("http://api.kanye.rest/")
+            req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0')
+            response2 = urllib.request.urlopen(req)
+            json_stuff2 = json.loads(response2.read())
+            print(json_stuff2)
+            inspiration = json_stuff2["quote"]
+            f = open("keys/key_harvardartmuseums.txt")
+            key = f.readline()
+            req = urllib.request.Request("https://api.harvardartmuseums.org/image?apikey="+key)
+            response2 = urllib.request.urlopen(req)
+            json_stuff2 = json.loads(response2.read())
+            print(len(json_stuff2["records"]))
             randInt0 = random.randint(0, len(json_stuff2["records"]) - 1)
             randInt1 = random.randint(0, len(json_stuff2["records"]) - 1)
             randInt2 = random.randint(0, len(json_stuff2["records"]) - 1)
-        images = [json_stuff2["records"][randInt0]["baseimageurl"], json_stuff2["records"][randInt1]["baseimageurl"], json_stuff2["records"][randInt2]["baseimageurl"]]
-        print(images)
-        return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration, images=images, minute=db.getBreakMinute(session["login"]))
+            # regenerate integers until they are unique
+            while(randInt0 == randInt1 or randInt1 == randInt2 or randInt2 == randInt0):
+                randInt0 = random.randint(0, len(json_stuff2["records"]) - 1)
+                randInt1 = random.randint(0, len(json_stuff2["records"]) - 1)
+                randInt2 = random.randint(0, len(json_stuff2["records"]) - 1)
+            images = [json_stuff2["records"][randInt0]["baseimageurl"], json_stuff2["records"][randInt1]["baseimageurl"], json_stuff2["records"][randInt2]["baseimageurl"]]
+            print(images)
+            return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration, images=images, minute=db.getBreakMinute(session["login"]))
+        except:
+            return render_template('login.html', error_message = "ERROR")
     return redirect("/")
 
 @app.route("/about",methods=['GET','POST'])
