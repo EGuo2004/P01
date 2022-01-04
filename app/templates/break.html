@@ -12,8 +12,8 @@
       <input class="btn btn-success" style="width:75px" type="submit" value="Logout" name="sub2">
     </form>
     <br>
-    <form action="/"> <!-- go back to home page -->
-      <input class="btn btn-success float-right" style="width:175px" type="submit" value="Back to home page">
+    <form action="/home"> <!-- go back to home page -->
+      <input class="btn btn-success float-right" style="width:175px" type="submit" value="Back to home page" name="home">
     </form>
     <center>
     <h1>
@@ -25,7 +25,10 @@
     </h2>
     <br><br>
   </center>
-
+  <meta http-equiv="refresh" content="60">
+  <p>
+    {{minute}}
+  </p>
   <p>
     <center>
     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

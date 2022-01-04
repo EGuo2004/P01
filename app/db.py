@@ -15,7 +15,7 @@ c = db.cursor()
 command = "CREATE TABLE IF NOT EXISTS "
 
 # Creating table that contains username | password | currentTime | minute, usernames must be unique
-c.execute (command + "user_info (username TEXT, password TEXT, currentTime INTEGER, minute INTEGER, CONSTRAINT uni_user UNIQUE(username))")
+c.execute (command + "user_info (username TEXT, password TEXT, currentTime INTEGER, minute INTEGER, breakMinute INTEGER, CONSTRAINT uni_user UNIQUE(username))")
 
 
 def get_login(username, password):
@@ -72,8 +72,8 @@ def add_login(username, password):
     c = db.cursor()
 
     # add username and password pair to database, no stories_contributed blank at account creation
-    command = "INSERT INTO user_info VALUES(?, ?, ?, ?)"
-    c.execute(command, (username, password, "None", "None"))
+    command = "INSERT INTO user_info VALUES(?, ?, ?, ?, ?)"
+    c.execute(command, (username, password, "None", "None", "None"))
 
     # commit changes to db
     db.commit()
@@ -96,6 +96,15 @@ def getMinute(username):
     print(data)
     return data[0][3]
 
+def getBreakMinute(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = f"SELECT * FROM user_info WHERE (username = \"{username}\")"
+    c.execute(command)
+    data = c.fetchall()
+    print(data)
+    return data[0][4]
+
 def setTime(username, time):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -108,6 +117,14 @@ def setMinute(username, minute):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = f"UPDATE user_info SET minute=\"{minute}\" WHERE (username = \"{username}\")"
+    print(command)
+    c.execute(command)
+    db.commit()
+
+def setBreakMinute(username, minute):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = f"UPDATE user_info SET breakMinute=\"{minute}\" WHERE (username = \"{username}\")"
     print(command)
     c.execute(command)
     db.commit()

@@ -28,45 +28,60 @@ def disp_timerpage():
     Displays the timer/study page
     '''
     if('login' in session and session['login'] != False):
-        db.setMinute(session["login"], checkTime())
+        db.setMinute(session["login"], checkTime("t"))
         minute = db.getMinute(session["login"])
+        print(minute)
         if minute != "None":
             if minute <= 0:
                 db.setMinute(session["login"], "None")
                 db.setTime(session["login"], "None")
                 return redirect("/break")
         else:
-            if "timer" in request.form and minute == "None":
+            if "timer" in request.form and minute == "None" and int(request.form["timer"]) >= 0:
                 db.setMinute(session["login"], int(request.form["timer"]))
+                if(db.getBreakMinute(session["login"]) == "None"):
+                    db.setBreakMinute(session["login"], int(int(db.getMinute(session["login"])) / 3) + 1)
+                    print(db.getBreakMinute(session["login"]))
         return render_template('timer.html', minute=db.getMinute(session["login"]))
     return redirect("/")
-def checkTime():
-    minute = db.getMinute(session["login"])
-    if(minute != "None"):
+def checkTime(type):
+    if(type == "break"):
+        minute = db.getBreakMinute(session["login"])
+        if(db.getTime(session["login"]) == "None" or minute == "None"):
+            db.setTime(session["login"], time.time()) # initialize start time
+        # in break, minute will never equal "None"
         if((time.time() - db.getTime(session["login"])) >= 60): 
-            db.setMinute(session["login"], minute - 1)
+            db.setBreakMinute(session["login"], minute - 1)
             db.setTime(session["login"], time.time()) # start time changes every minute
-        return db.getMinute(session["login"])
-    if(db.getTime(session["login"]) == "None"):
-        db.setTime(session["login"], time.time()) # initialize start time
-        return "None"
+        return db.getBreakMinute(session["login"])
+    else:
+        minute = db.getMinute(session["login"])
+        if(db.getTime(session["login"]) == "None" or minute == "None"):
+            db.setTime(session["login"], time.time()) # initialize start time
+            return "None"
+        if(minute != "None"):
+            if((time.time() - db.getTime(session["login"])) >= 60): 
+                db.setMinute(session["login"], minute - 1)
+                db.setTime(session["login"], time.time()) # start time changes every minute
+            return db.getMinute(session["login"])
+    
     return "None"
-error = "" # the e
-My project partner, Shuprovo, is in quarantine for COVID, so can we please present at one of the later dates?
-
-Thank you,
-Josephineogin"] = name_input
-                print("hello")
-                return redirect("/home") # auth with spotify
-        except Exception as e:
-            error = e
-        return render_template('login.html', error_message = error) # render login page with an error message
-    return render_template('login.html') # otherwise render login page
+    
+@app.route("/break",methods=['GET', 'POST'])
 def disp_breakpage():
     '''
     Displays the break page, links the APIs
     '''
     if('login' in session and session['login'] != False):
+        if(db.getBreakMinute(session["login"]) == "None"): #should never equal None, unless the user used the search bar and skipped timer page
+            db.setBreakMinute(session["login"], 5)
+        minute = db.getBreakMinute(session["login"])
+        db.setBreakMinute(session["login"], checkTime("break"))
+        if minute != "None":
+            if minute <= 0:
+                db.setBreakMinute(session["login"], "None")
+                db.setTime(session["login"], "None")
+                return redirect("/timer")
         response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
         json_stuff = json.loads(response.read())
         data = json_stuff["data"]
@@ -81,17 +96,17 @@ def disp_breakpage():
         response2 = urllib.request.urlopen(req)
         json_stuff2 = json.loads(response2.read())
         print(len(json_stuff2["records"]))
-        randInt0 = random.randint(0, len(json_stuff2["records"]))
-        randInt1 = random.randint(0, len(json_stuff2["records"]))
-        randInt2 = random.randint(0, len(json_stuff2["records"]))
+        randInt0 = random.randint(0, len(json_stuff2["records"]) - 1)
+        randInt1 = random.randint(0, len(json_stuff2["records"]) - 1)
+        randInt2 = random.randint(0, len(json_stuff2["records"]) - 1)
         # regenerate integers until they are unique
         while(randInt0 == randInt1 or randInt1 == randInt2 or randInt2 == randInt0):
-            randInt0 = random.randint(0, len(json_stuff2["records"]))
-            randInt1 = random.randint(0, len(json_stuff2["records"]))
-            randInt2 = random.randint(0, len(json_stuff2["records"]))
+            randInt0 = random.randint(0, len(json_stuff2["records"]) - 1)
+            randInt1 = random.randint(0, len(json_stuff2["records"]) - 1)
+            randInt2 = random.randint(0, len(json_stuff2["records"]) - 1)
         images = [json_stuff2["records"][randInt0]["baseimageurl"], json_stuff2["records"][randInt1]["baseimageurl"], json_stuff2["records"][randInt2]["baseimageurl"]]
         print(images)
-        return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration, images=images)
+        return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration, images=images, minute=db.getBreakMinute(session["login"]))
     return redirect("/")
 
 @app.route("/about",methods=['GET','POST'])
@@ -171,7 +186,10 @@ def load_home():
     Loads home page with buttons for timer page and about page
     '''
     if('login' in session and session['login'] != False): # check if user is logged in
-    
+        if('home' in request.form):
+            db.setMinute(session["login"], "None")
+            db.setTime(session["login"], "None")
+            db.setBreakMinute(session["login"], "None")
         return render_template('home.html', name = session["login"]) # render login page with an error message
     return redirect("/") # if not logged in, go to login page
 @app.route("/create_account", methods=['GET', 'POST'])
