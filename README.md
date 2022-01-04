@@ -5,7 +5,7 @@ Josephine Lee - Back-end (Flask, API linking)
 Yoonah Chang - Front-end (Bootstrap, HTML)  
 
 ## Description
-  The Breakbuddy(TM) is designed to be used whenever someone is doing work. To prevent overworking or working continiously without a break, The Breakbuddy(TM) will alert the user after a certain amount of time working that they should take a break. After the user accepts the much needed break, The Breakbuddy(TM) will display images from Harvard Art Museums, along with jokes and fun facts on top of them to provide some slight entertainment for the user as well.
+  The Breakbuddy(TM) is designed to be used whenever someone is doing work. To prevent overworking or working continuously without a break, The Breakbuddy(TM) will alert the user after a certain amount of time working that they should take a break. After the user accepts the much needed break, The Breakbuddy(TM) will display images from Harvard Art Museums, along with jokes and fun facts on top of them to provide some slight entertainment for the user as well.
   
 ## Launch Codes
 ### Clone Repository
