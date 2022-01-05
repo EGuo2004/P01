@@ -154,3 +154,6 @@ Fixed various visual inconsistencies
 
 josephineL -- 2022-01-04 11:13
 Got new API key; added try except blocks.
+
+josephineL -- 2022-01-04 20:19
+Updated design doc by redoing component map and updating description and APIs used, etc.
