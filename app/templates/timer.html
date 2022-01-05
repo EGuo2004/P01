@@ -22,17 +22,21 @@
     <center>
     {% else %}
       <meta http-equiv="refresh" content="60">
-      <h3> 
-        Time Remaining:
-      </h3>
-      <br>
-      <h1>
+      <center>
+        <h2> 
+          Time Remaining
+        </h2>
+      </center>
+      <h1 style="font-size: 250px;">
         {{minute}}:00
       </h1>
       <br><br>
-      <h3>
-        This message is not supposed to be read. If you are reading this message, you are wasting your time, go do your work.
-      </h3>
+      <center>
+        <h3>
+          This message is not supposed to be read. If you are reading this message, you are wasting your time, go do your work.
+        </h3>
+      </center>
+
       <center>
       <form action="/leave" method="POST">
         <input class="btn btn-danger" type="submit" name="leave" value="End Timer">
