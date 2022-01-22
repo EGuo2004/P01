@@ -3,6 +3,7 @@ from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
 from flask import session           #allow for session creation/maintenance
 from flask import redirect
+from flask import url_for
 import urllib
 import json
 import random
@@ -24,7 +25,7 @@ def leave_page():
     db.setMinute(session["login"], "None")
     db.setTime(session["login"], "None")
     db.setBreakMinute(session["login"], "None")
-    return redirect("/home")
+    return redirect(url_for('load_home'))
 
 @app.route("/timer",methods=['GET', 'POST'])
 def disp_timerpage():
@@ -51,7 +52,7 @@ def disp_timerpage():
         except:
             return render_template('login.html', error_message = "ERROR")
         
-    return redirect("/")
+    return redirect(url_for('disp_loginpage'))
 def checkTime(type):
     if(type == "break"):
         minute = db.getBreakMinute(session["login"])
@@ -90,7 +91,7 @@ def disp_breakpage():
                 if minute <= 0:
                     db.setBreakMinute(session["login"], "None")
                     db.setTime(session["login"], "None")
-                    return redirect("/timer")
+                    return redirect(url_for('disp_timerpage'))
             response = urllib.request.urlopen("https://asli-fun-fact-api.herokuapp.com/") # join key with base url
             json_stuff = json.loads(response.read())
             data = json_stuff["data"]
@@ -120,7 +121,7 @@ def disp_breakpage():
             return render_template('break.html', name=session["login"], fact = funFact, inspirationQuote=inspiration, images=images, minute=db.getBreakMinute(session["login"]))
         except:
             return render_template('login.html', error_message = "ERROR")
-    return redirect("/")
+    return redirect(url_for('disp_loginpage'))
 
 @app.route("/about",methods=['GET','POST'])
 def disp_aboutpage():
@@ -156,7 +157,7 @@ def disp_loginpage():
         session["login"] = False # end session
     if("login" in session):
         if(session["login"] != False): # if not false, the value of session["login"] is the username of the logged in user
-            return redirect("/home") # go straight to home page
+            return redirect(url_for('load_home')) # go straight to home page
     print(session)
     if("username" in data):
         # checks for request method and gets the input
@@ -175,7 +176,7 @@ def disp_loginpage():
             if(error == ""):
                 session["login"] = name_input
                 print("hello")
-                return redirect("/home") # auth with spotify
+                return redirect(url_for('load_home'))
         except Exception as e:
             error = e
         return render_template('login.html', error_message = error) # render login page with an error message
@@ -200,7 +201,7 @@ def load_home():
     '''
     if('login' in session and session['login'] != False): # check if user is logged in
         return render_template('home.html', name = session["login"]) # render login page with an error message
-    return redirect("/") # if not logged in, go to login page
+    return redirect(url_for('disp_loginpage')) # if not logged in, go to login page
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account_render():
     '''
@@ -233,7 +234,7 @@ def create_account_render():
         else:
             try:
                 db.add_login(name_input, pass_input) # try to add u/p pair to db
-                return redirect("/") # go back to main login page
+                return redirect(url_for('disp_loginpage')) # go back to main login page
             except sqlite3.IntegrityError: # will throw this error if the username is a duplicate
                 error = "Username already exists!"
         # render the page after processing input
