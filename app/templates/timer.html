@@ -15,7 +15,7 @@
     <br>
     {% if minute == "None" %}
       <center>
-        <form action="/timer" method="POST">
+        <form action={{ url_for('disp_timerpage') }} method="POST">
           <input type="number" name="timer" class="form-control" style="width:200px" placeholder="Study Time (Min)" aria-label="Timer" aria-describedby="inputGroup-sizing-sm">
         </form>
       </center>
@@ -38,7 +38,7 @@
       </center>
 
       <center>
-      <form action="/leave" method="POST">
+      <form action={{ url_for('leave_page') }} method="POST">
         <input class="btn btn-danger" type="submit" name="leave" value="End Timer">
       </form>
       </center>

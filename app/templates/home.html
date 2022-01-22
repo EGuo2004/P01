@@ -21,7 +21,7 @@ To begin a session, simply set a timer for how long you wish to study for.
     </center>
 </h6>
 
-<form action="/timer" method="POST">
+<form action={{ url_for('disp_timerpage') }} method="POST">
 		<input class="btn btn-success" type="submit" name="create" value="Set The Timer">
 </form>
 </div>
@@ -31,7 +31,7 @@ Some technobabble and background about this project.
     </center>
 </h6>
 <div class="col">
-<form action="/about" method="POST">
+<form action={{ url_for('disp_aboutpage') }} method="POST">
 		<input class="btn btn-success" type="submit" name="create" value="About The Project">
 </form>
 </div>
@@ -41,7 +41,7 @@ Some technobabble and background about this project.
     </center>
 </h6>
 <div class="col">
-    <form action="/" method="POST">
+    <form action={{ url_for('disp_loginpage') }} method="POST">
             <input class="btn btn-success" type="submit" name="sub2" value="Log Out">
     </form>
 </div>
